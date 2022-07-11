@@ -61,14 +61,14 @@ class Server:
             idx = index
         else:
             idx = 0
-            for i in dataset.keys():
-                if i >= idx and count < page_size:
-                    data.append(dataset.get(i))
-                    count += 1
-                    continue
-                if count == page_size:
-                    next_index = i
-                    break
+        for i in dataset.keys():
+            if i >= idx and count < page_size:
+                data.append(dataset.get(i))
+                count += 1
+                continue
+            if count == page_size:
+                next_index = i
+                break
         return {
             "index": index,
             "data": data,
