@@ -53,7 +53,7 @@ class Server:
                     data: The actual page of the dataset
             """
         dataset = self.indexed_dataset()
-        assert index < len(dataset)
+        assert index is not None and index >= 0 index <= len(dataset)
         count = 0
         next_index = None
         data = []
