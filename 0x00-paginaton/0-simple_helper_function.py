@@ -6,7 +6,7 @@ from typing import Tuple
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """ Returns a tuple of size two containing a start index and an end index
         corresponding to the range of indexes to return in a list for those
-        patricular pagination parameters
+        particular pagination parameters
 
     Args:
         page: The page to be returned
