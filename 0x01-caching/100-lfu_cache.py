@@ -25,25 +25,25 @@ class LFUCache(BaseCaching):
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
                 temp_dict = self.access_count.copy()
                 temp_dict.pop(key)
-                max_count = min(temp_dict.values())
-                max_keys = []
+                min_count = min(temp_dict.values())
+                min_keys = []
                 for k, v in self.access_count.items():
-                    if v == max_count:
-                        max_keys.append(k)
-                if len(max_keys) > 1:
+                    if v == min_count:
+                        min_keys.append(k)
+                if len(min_keys) > 1:
                     i = 0
-                    for key_max in max_keys:
+                    for key_min in min_keys:
                         while i < len(self.access_count):
-                            if key_max == list(self.access_count)[i]:
-                                self.cache_data.pop(key_max)
-                                self.access_count.pop(key_max)
-                                print("DISCARD: {}".format(key_max))
+                            if key_min == list(self.access_count)[i]:
+                                self.cache_data.pop(key_min)
+                                self.access_count.pop(key_min)
+                                print("DISCARD: {}".format(key_min))
                                 break
                             i += 1
-                        if key_max not in self.access_count.keys():
+                        if key_min not in self.access_count.keys():
                             break
-                elif len(max_keys) == 1:
-                    key_del = max_keys[0]
+                elif len(min_keys) == 1:
+                    key_del = min_keys[0]
                     self.cache_data.pop(key_del)
                     self.access_count.pop(key_del)
                     print("DISCARD: {}".format(key_del))
